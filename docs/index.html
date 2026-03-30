@@ -8,11 +8,11 @@
 <body>
   <div id="swagger-ui"></div>
   <script src="https://unpkg.com/swagger-ui-dist/swagger-ui-bundle.js"></script>
-  <script>
+   <script>
     const ui = SwaggerUIBundle({
       urls: [
-        { url: "openapi-prod.yaml", name: "Production" },
-        { url: "openapi-staging.yaml", name: "Staging" }
+        { url: "openapi-prod.json", name: "Production" },
+        { url: "openapi-staging.json", name: "Staging" }
       ],
       "urls.primaryName": "Production",
       dom_id: "#swagger-ui",
