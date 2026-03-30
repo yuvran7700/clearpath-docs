@@ -1,22 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Clearpath API Docs</title>
+  <meta charset="UTF-8" />
+  <title>ClearPath API Docs</title>
   <link rel="stylesheet" href="https://unpkg.com/swagger-ui-dist/swagger-ui.css" />
 </head>
 <body>
   <div id="swagger-ui"></div>
+
   <script src="https://unpkg.com/swagger-ui-dist/swagger-ui-bundle.js"></script>
-   <script>
-    const ui = SwaggerUIBundle({
-      urls: [
-        { url: "openapi-prod.json", name: "Production" },
-        { url: "openapi-staging.json", name: "Staging" }
-      ],
-      "urls.primaryName": "Production",
-      dom_id: "#swagger-ui",
-    });
+  <script>
+    window.onload = function () {
+      SwaggerUIBundle({
+        urls: [
+          { url: "./openapi-prod.json", name: "Production" },
+          { url: "./openapi-staging.json", name: "Staging" }
+        ],
+        urlsPrimaryName: "Production",
+        dom_id: "#swagger-ui"
+      });
+    };
   </script>
 </body>
 </html>
