@@ -1,368 +1,382 @@
-{
-  "openapi": "3.0.3",
-  "info": {
-    "title": "ClearPath API - Production",
-    "description": "API for retrieving preprocessed weather data and transport disruption alerts.",
-    "version": "1.0.0"
-  },
-  "servers": [
-    {
-      "url": "https://nv2ymlpynf.execute-api.us-east-1.amazonaws.com",
-      "description": "Production"
-    }
-  ],
-  "paths": {
-    "/weather/collection": {
-      "get": {
-        "summary": "Get ADAGE weather data for a given date",
-        "description": "Returns ADAGE-formatted weather JSON file from S3 for a given date.",
-        "operationId": "getWeatherAdage",
-        "parameters": [
-          {
-            "name": "date",
-            "in": "query",
-            "required": true,
-            "description": "The date to retrieve ADAGE weather data for, in YYYY-MM-DD format.",
-            "schema": {
-              "type": "string",
-              "format": "date",
-              "example": "2026-02-18"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Successful response with raw ADAGE weather data.",
-            "content": {
-              "application/json": {
-                "schema": { "$ref": "#/components/schemas/ADAGEWeatherRecord" },
-                "example": {
-                  "events": [
-                    {
-                      "event_attributes": {
-                        "date": "2026-03-18",
-                        "tempMin": 15,
-                        "tempMax": 25,
-                        "rainfall": 5,
-                        "sunshineHours": 10,
-                        "windGustSpeed": 30,
-                        "9am": { "temp": 18, "humidity": 65 },
-                        "3pm": { "temp": 23, "humidity": 55 }
-                      }
-                    }
-                  ]
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Bad request — missing or invalid date parameter.",
-            "content": {
-              "application/json": {
-                "schema": { "$ref": "#/components/schemas/ErrorResponse" },
-                "examples": {
-                  "missing_date": {
-                    "summary": "Missing date parameter",
-                    "value": { "error": "Missing date parameter" }
-                  },
-                  "invalid_date": {
-                    "summary": "Invalid date format",
-                    "value": { "error": "Invalid date format" }
-                  }
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "No ADAGE record found for the given date.",
-            "content": {
-              "application/json": {
-                "schema": { "$ref": "#/components/schemas/ErrorResponse" },
-                "example": { "error": "Record not found" }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/weather/preprocessed": {
-      "get": {
-        "summary": "Get preprocessed weather data",
-        "description": "Returns preprocessed weather data for a given date, including temperature, rainfall, sunshine, wind, and humidity classifications.",
-        "operationId": "getWeatherPreprocessed",
-        "parameters": [
-          {
-            "name": "date",
-            "in": "query",
-            "required": true,
-            "description": "The date to retrieve weather data for, in YYYY-MM-DD format.",
-            "schema": {
-              "type": "string",
-              "format": "date",
-              "example": "2026-02-18"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Successful response with preprocessed weather data.",
-            "content": {
-              "application/json": {
-                "schema": { "$ref": "#/components/schemas/WeatherRecord" },
-                "example": {
-                  "date": "2026-03-18",
-                  "eTag": "abc123",
-                  "tempMin": 15,
-                  "tempMax": 25,
-                  "rainfall": 5,
-                  "sunshineHours": 10,
-                  "windGustSpeed": 30,
-                  "9am": { "temp": 18, "humidity": 65 },
-                  "3pm": { "temp": 23, "humidity": 55 },
-                  "Weather_Severity": {
-                    "Temp_Severity": "Mild",
-                    "Rain_Severity": "Light rain",
-                    "Sun_Severity": "Partly Cloudy",
-                    "Wind_Severity": "Breezy",
-                    "Humidity_Severity": "Moderate Humidity"
-                  }
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Bad request — missing or invalid date parameter.",
-            "content": {
-              "application/json": {
-                "schema": { "$ref": "#/components/schemas/ErrorResponse" },
-                "examples": {
-                  "missing_date": {
-                    "summary": "Missing date parameter",
-                    "value": { "error": "Missing date parameter" }
-                  },
-                  "invalid_date": {
-                    "summary": "Invalid date format",
-                    "value": { "error": "Invalid date format" }
-                  }
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "No weather record found for the given date.",
-            "content": {
-              "application/json": {
-                "schema": { "$ref": "#/components/schemas/ErrorResponse" },
-                "example": { "error": "Record not found" }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/alert/collection": {
-      "get": {
-        "summary": "Get transport disruption tweets",
-        "description": "Retrieves historical tweets from a specified Twitter account within a date range and returns them as an ADAGE-formatted dataset.",
-        "operationId": "getAlertCollection",
-        "parameters": [
-          {
-            "name": "base_query",
-            "in": "query",
-            "required": true,
-            "description": "Twitter account filter. Must include a 'from:' prefix e.g. from:T1SydneyTrains.",
-            "schema": {
-              "type": "string",
-              "example": "from:T1SydneyTrains"
-            }
-          },
-          {
-            "name": "start_date",
-            "in": "query",
-            "required": true,
-            "description": "Start date for tweet retrieval in YYYY-MM-DD format.",
-            "schema": {
-              "type": "string",
-              "format": "date",
-              "example": "2026-03-01"
-            }
-          },
-          {
-            "name": "end_date",
-            "in": "query",
-            "required": true,
-            "description": "End date for tweet retrieval in YYYY-MM-DD format.",
-            "schema": {
-              "type": "string",
-              "format": "date",
-              "example": "2026-03-02"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Successful response with ADAGE-formatted tweet dataset.",
-            "content": {
-              "application/json": {
-                "schema": { "$ref": "#/components/schemas/ADAGETweetDataset" },
-                "example": {
-                  "data_source": "Twitter",
-                  "dataset_type": "Historical Tweets",
-                  "dataset_id": "twitter:2026-03-01:2026-03-23:1234567890",
-                  "time_object": {
-                    "timestamp": "2026-03-23 12:00:00",
-                    "timezone": "UTC"
-                  },
-                  "events": [
-                    {
-                      "time_object": {
-                        "timestamp": "2026-03-23",
-                        "duration": 0,
-                        "duration_unit": "second",
-                        "timezone": "UTC"
-                      },
-                      "event_type": "transport disruption tweet",
-                      "attribute": {
-                        "account_name": "T1 Sydney Trains",
-                        "text": "Allow extra travel time due to an incident at Hornsby.",
-                        "date": "2026-03-23"
-                      }
-                    }
-                  ]
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Bad request — missing, invalid, or malformed parameters.",
-            "content": {
-              "application/json": {
-                "schema": { "$ref": "#/components/schemas/ErrorResponse" },
-                "examples": {
-                  "missing_params": {
-                    "summary": "Missing required parameters",
-                    "value": { "message": "base_query, start_date, and end_date are required" }
-                  },
-                  "missing_from": {
-                    "summary": "Missing from: filter in base_query",
-                    "value": { "message": "base_query must include a 'from:account' filter e.g. from:T1SydneyTrains" }
-                  },
-                  "invalid_date": {
-                    "summary": "Invalid date format",
-                    "value": { "message": "Dates must be in YYYY-MM-DD format" }
-                  },
-                  "invalid_range": {
-                    "summary": "start_date is after end_date",
-                    "value": { "message": "start_date must be earlier than or equal to end_date" }
-                  }
-                }
-              }
-            }
-          },
-          "503": {
-            "description": "Service unavailable — Lambda timeout due to large date range or Twitter API unavailability.",
-            "content": {
-              "application/json": {
-                "schema": { "$ref": "#/components/schemas/ErrorResponse" },
-                "example": { "message": "Service Unavailable" }
-              }
-            }
-          }
-        }
-      }
-    }
-  },
-  "components": {
-    "schemas": {
-      "WeatherRecord": {
-        "type": "object",
-        "properties": {
-          "date": { "type": "string", "format": "date" },
-          "eTag": { "type": "string" },
-          "tempMin": { "type": "number" },
-          "tempMax": { "type": "number" },
-          "rainfall": { "type": "number" },
-          "sunshineHours": { "type": "number" },
-          "windGustSpeed": { "type": "number" },
-          "9am": {
-            "type": "object",
-            "properties": {
-              "temp": { "type": "number" },
-              "humidity": { "type": "number" }
-            }
-          },
-          "3pm": {
-            "type": "object",
-            "properties": {
-              "temp": { "type": "number" },
-              "humidity": { "type": "number" }
-            }
-          },
-          "Weather_Severity": {
-            "type": "object",
-            "properties": {
-              "Temp_Severity": { "type": "string", "enum": ["Cold", "Mild", "Warm", "Hot"] },
-              "Rain_Severity": { "type": "string", "enum": ["No rain", "Light rain", "Moderate rain", "Heavy rain"] },
-              "Sun_Severity": { "type": "string", "enum": ["Cloudy", "Partly Cloudy", "Sunny"] },
-              "Wind_Severity": { "type": "string", "enum": ["Calm", "Breezy", "Windy", "Gale"] },
-              "Humidity_Severity": { "type": "string", "enum": ["Low Humidity", "Moderate Humidity", "High Humidity", "Extreme Humidity"] }
-            }
-          }
-        }
-      },
-      "ADAGEWeatherRecord": {
-        "type": "object",
-        "properties": {
-          "events": {
-            "type": "array",
-            "items": {
-              "type": "object",
-              "properties": {
-                "event_attributes": {
-                  "type": "object",
-                  "properties": {
-                    "date": { "type": "string", "format": "date" },
-                    "tempMin": { "type": "number" },
-                    "tempMax": { "type": "number" },
-                    "rainfall": { "type": "number" },
-                    "sunshineHours": { "type": "number" },
-                    "windGustSpeed": { "type": "number" },
-                    "9am": { "type": "object", "properties": { "temp": { "type": "number" }, "humidity": { "type": "number" } } },
-                    "3pm": { "type": "object", "properties": { "temp": { "type": "number" }, "humidity": { "type": "number" } } }
-                  }
-                }
-              }
-            }
-          }
-        }
-      },
-      "ADAGETweetDataset": {
-        "type": "object",
-        "properties": {
-          "data_source": { "type": "string" },
-          "dataset_type": { "type": "string" },
-          "dataset_id": { "type": "string" },
-          "time_object": { "type": "object", "properties": { "timestamp": { "type": "string" }, "timezone": { "type": "string" } } },
-          "events": {
-            "type": "array",
-            "items": {
-              "type": "object",
-              "properties": {
-                "time_object": { "type": "object", "properties": { "timestamp": { "type": "string" }, "duration": { "type": "integer" }, "duration_unit": { "type": "string" }, "timezone": { "type": "string" } } },
-                "event_type": { "type": "string" },
-                "attribute": { "type": "object", "properties": { "account_name": { "type": "string" }, "text": { "type": "string" }, "date": { "type": "string", "format": "date" } } }
-              }
-            }
-          }
-        }
-      },
-      "ErrorResponse": {
-        "type": "object",
-        "properties": {
-          "error": { "type": "string" },
-          "message": { "type": "string" }
-        }
-      }
-    }
-  }
-}
+openapi: 3.0.3
+info:
+  title: ClearPath API - Production
+  description: API for retrieving preprocessed weather data and transport disruption
+    alerts.
+  version: 1.0.0
+servers:
+- url: https://nv2ymlpynf.execute-api.us-east-1.amazonaws.com
+  description: Production
+paths:
+  /weather/collection:
+    get:
+      summary: Get ADAGE weather data for a given date
+      description: Returns ADAGE-formatted weather JSON file from S3 for a given date.
+      operationId: getWeatherAdage
+      parameters:
+      - name: date
+        in: query
+        required: true
+        description: The date to retrieve ADAGE weather data for, in YYYY-MM-DD format.
+        schema:
+          type: string
+          format: date
+          example: '2026-02-18'
+      responses:
+        '200':
+          description: Successful response with raw ADAGE weather data.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ADAGEWeatherRecord'
+              example:
+                events:
+                - event_attributes:
+                    date: '2026-03-18'
+                    tempMin: 15
+                    tempMax: 25
+                    rainfall: 5
+                    sunshineHours: 10
+                    windGustSpeed: 30
+                    9am:
+                      temp: 18
+                      humidity: 65
+                    3pm:
+                      temp: 23
+                      humidity: 55
+        '400':
+          description: Bad request — missing or invalid date parameter.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                missing_date:
+                  summary: Missing date parameter
+                  value:
+                    error: Missing date parameter
+                invalid_date:
+                  summary: Invalid date format
+                  value:
+                    error: Invalid date format
+        '404':
+          description: No ADAGE record found for the given date.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              example:
+                error: Record not found
+  /weather/preprocessed:
+    get:
+      summary: Get preprocessed weather data
+      description: Returns preprocessed weather data for a given date, including temperature,
+        rainfall, sunshine, wind, and humidity classifications.
+      operationId: getWeatherPreprocessed
+      parameters:
+      - name: date
+        in: query
+        required: true
+        description: The date to retrieve weather data for, in YYYY-MM-DD format.
+        schema:
+          type: string
+          format: date
+          example: '2026-02-18'
+      responses:
+        '200':
+          description: Successful response with preprocessed weather data.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WeatherRecord'
+              example:
+                date: '2026-03-18'
+                eTag: abc123
+                tempMin: 15
+                tempMax: 25
+                rainfall: 5
+                sunshineHours: 10
+                windGustSpeed: 30
+                9am:
+                  temp: 18
+                  humidity: 65
+                3pm:
+                  temp: 23
+                  humidity: 55
+                Weather_Severity:
+                  Temp_Severity: Mild
+                  Rain_Severity: Light rain
+                  Sun_Severity: Partly Cloudy
+                  Wind_Severity: Breezy
+                  Humidity_Severity: Moderate Humidity
+        '400':
+          description: Bad request — missing or invalid date parameter.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                missing_date:
+                  summary: Missing date parameter
+                  value:
+                    error: Missing date parameter
+                invalid_date:
+                  summary: Invalid date format
+                  value:
+                    error: Invalid date format
+        '404':
+          description: No weather record found for the given date.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              example:
+                error: Record not found
+  /alert/collection:
+    get:
+      summary: Get transport disruption tweets
+      description: Retrieves historical tweets from a specified Twitter account within
+        a date range and returns them as an ADAGE-formatted dataset.
+      operationId: getAlertCollection
+      parameters:
+      - name: base_query
+        in: query
+        required: true
+        description: Twitter account filter. Must include a 'from:' prefix e.g. from:T1SydneyTrains.
+        schema:
+          type: string
+          example: from:T1SydneyTrains
+      - name: start_date
+        in: query
+        required: true
+        description: Start date for tweet retrieval in YYYY-MM-DD format.
+        schema:
+          type: string
+          format: date
+          example: '2026-03-01'
+      - name: end_date
+        in: query
+        required: true
+        description: End date for tweet retrieval in YYYY-MM-DD format.
+        schema:
+          type: string
+          format: date
+          example: '2026-03-02'
+      responses:
+        '200':
+          description: Successful response with ADAGE-formatted tweet dataset.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ADAGETweetDataset'
+              example:
+                data_source: Twitter
+                dataset_type: Historical Tweets
+                dataset_id: twitter:2026-03-01:2026-03-23:1234567890
+                time_object:
+                  timestamp: '2026-03-23 12:00:00'
+                  timezone: UTC
+                events:
+                - time_object:
+                    timestamp: '2026-03-23'
+                    duration: 0
+                    duration_unit: second
+                    timezone: UTC
+                  event_type: transport disruption tweet
+                  attribute:
+                    account_name: T1 Sydney Trains
+                    text: Allow extra travel time due to an incident at Hornsby.
+                    date: '2026-03-23'
+        '400':
+          description: Bad request — missing, invalid, or malformed parameters.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                missing_params:
+                  summary: Missing required parameters
+                  value:
+                    message: base_query, start_date, and end_date are required
+                missing_from:
+                  summary: 'Missing from: filter in base_query'
+                  value:
+                    message: base_query must include a 'from:account' filter e.g.
+                      from:T1SydneyTrains
+                invalid_date:
+                  summary: Invalid date format
+                  value:
+                    message: Dates must be in YYYY-MM-DD format
+                invalid_range:
+                  summary: start_date is after end_date
+                  value:
+                    message: start_date must be earlier than or equal to end_date
+        '503':
+          description: Service unavailable — Lambda timeout due to large date range
+            or Twitter API unavailability.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              example:
+                message: Service Unavailable
+components:
+  schemas:
+    WeatherRecord:
+      type: object
+      properties:
+        date:
+          type: string
+          format: date
+        eTag:
+          type: string
+        tempMin:
+          type: number
+        tempMax:
+          type: number
+        rainfall:
+          type: number
+        sunshineHours:
+          type: number
+        windGustSpeed:
+          type: number
+        9am:
+          type: object
+          properties:
+            temp:
+              type: number
+            humidity:
+              type: number
+        3pm:
+          type: object
+          properties:
+            temp:
+              type: number
+            humidity:
+              type: number
+        Weather_Severity:
+          type: object
+          properties:
+            Temp_Severity:
+              type: string
+              enum:
+              - Cold
+              - Mild
+              - Warm
+              - Hot
+            Rain_Severity:
+              type: string
+              enum:
+              - No rain
+              - Light rain
+              - Moderate rain
+              - Heavy rain
+            Sun_Severity:
+              type: string
+              enum:
+              - Cloudy
+              - Partly Cloudy
+              - Sunny
+            Wind_Severity:
+              type: string
+              enum:
+              - Calm
+              - Breezy
+              - Windy
+              - Gale
+            Humidity_Severity:
+              type: string
+              enum:
+              - Low Humidity
+              - Moderate Humidity
+              - High Humidity
+              - Extreme Humidity
+    ADAGEWeatherRecord:
+      type: object
+      properties:
+        events:
+          type: array
+          items:
+            type: object
+            properties:
+              event_attributes:
+                type: object
+                properties:
+                  date:
+                    type: string
+                    format: date
+                  tempMin:
+                    type: number
+                  tempMax:
+                    type: number
+                  rainfall:
+                    type: number
+                  sunshineHours:
+                    type: number
+                  windGustSpeed:
+                    type: number
+                  9am:
+                    type: object
+                    properties:
+                      temp:
+                        type: number
+                      humidity:
+                        type: number
+                  3pm:
+                    type: object
+                    properties:
+                      temp:
+                        type: number
+                      humidity:
+                        type: number
+    ADAGETweetDataset:
+      type: object
+      properties:
+        data_source:
+          type: string
+        dataset_type:
+          type: string
+        dataset_id:
+          type: string
+        time_object:
+          type: object
+          properties:
+            timestamp:
+              type: string
+            timezone:
+              type: string
+        events:
+          type: array
+          items:
+            type: object
+            properties:
+              time_object:
+                type: object
+                properties:
+                  timestamp:
+                    type: string
+                  duration:
+                    type: integer
+                  duration_unit:
+                    type: string
+                  timezone:
+                    type: string
+              event_type:
+                type: string
+              attribute:
+                type: object
+                properties:
+                  account_name:
+                    type: string
+                  text:
+                    type: string
+                  date:
+                    type: string
+                    format: date
+    ErrorResponse:
+      type: object
+      properties:
+        error:
+          type: string
+        message:
+          type: string
