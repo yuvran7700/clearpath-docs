@@ -12,7 +12,11 @@
   <script>
     window.onload = function () {
       SwaggerUIBundle({
-        url: "./openapi-prod.json",
+        urls: [
+          { url: "./openapi-prod.json", name: "Production" },
+          { url: "./openapi-staging.json", name: "Staging" }
+        ],
+        urlsPrimaryName: "Production",
         dom_id: "#swagger-ui"
       });
     };
