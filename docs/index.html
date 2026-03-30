@@ -7,11 +7,14 @@
 </head>
 <body>
   <div id="swagger-ui"></div>
-
   <script src="https://unpkg.com/swagger-ui-dist/swagger-ui-bundle.js"></script>
   <script>
     const ui = SwaggerUIBundle({
-      url: "openapi.yaml",  // points to your file in the same folder
+      urls: [
+        { url: "openapi-prod.yaml", name: "Production" },
+        { url: "openapi-staging.yaml", name: "Staging" }
+      ],
+      "urls.primaryName": "Production",
       dom_id: "#swagger-ui",
     });
   </script>
