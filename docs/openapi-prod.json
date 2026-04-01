@@ -345,7 +345,7 @@
                 "event_time": {
                   "type": "object",
                   "properties": {
-                    "timestamp": {
+                    "time_stamp": {
                       "type": "string"
                     },
                     "duration": {
@@ -354,7 +354,7 @@
                     "duration_unit": {
                       "type": "string"
                     },
-                    "timezone": {
+                    "time_zone": {
                       "type": "string"
                     }
                   }
@@ -515,7 +515,7 @@
                 "event_time": {
                   "type": "object",
                   "properties": {
-                    "timestamp": {
+                    "time_stamp": {
                       "type": "string"
                     },
                     "duration": {
@@ -524,7 +524,7 @@
                     "duration_unit": {
                       "type": "string"
                     },
-                    "timezone": {
+                    "time_zone": {
                       "type": "string"
                     }
                   }
