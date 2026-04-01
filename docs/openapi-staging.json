@@ -337,17 +337,6 @@
     "dataset_id": {
       "type": "string"
     },
-    "time_object": {
-      "type": "object",
-      "properties": {
-        "timestamp": {
-          "type": "string"
-        },
-        "timezone": {
-          "type": "string"
-        }
-      }
-    },
     "events": {
       "type": "array",
       "items": {
