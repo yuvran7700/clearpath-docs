@@ -368,7 +368,7 @@
                     "tempMin_C": {
                       "oneOf": [
                         {
-                          "type": "number"
+                          "type": "float"
                         },
                         {
                           "type": "string"
@@ -378,7 +378,7 @@
                     "tempMax_C": {
                       "oneOf": [
                         {
-                          "type": "number"
+                          "type": "float"
                         },
                         {
                           "type": "string"
@@ -388,7 +388,7 @@
                     "rainfall_mm": {
                       "oneOf": [
                         {
-                          "type": "number"
+                          "type": "float"
                         },
                         {
                           "type": "string"
@@ -398,7 +398,7 @@
                     "sunshineHours_hours": {
                       "oneOf": [
                         {
-                          "type": "number"
+                          "type": "float"
                         },
                         {
                           "type": "string"
@@ -408,7 +408,7 @@
                     "maxWindSpeed_kmh": {
                       "oneOf": [
                         {
-                          "type": "number"
+                          "type": "float"
                         },
                         {
                           "type": "string"
@@ -421,7 +421,7 @@
                         "temp_C": {
                           "oneOf": [
                             {
-                              "type": "number"
+                              "type": "float"
                             },
                             {
                               "type": "string"
@@ -431,7 +431,7 @@
                         "humidity_percent": {
                           "oneOf": [
                             {
-                              "type": "number"
+                              "type": "float"
                             },
                             {
                               "type": "string"
@@ -446,7 +446,7 @@
                         "temp_C": {
                           "oneOf": [
                             {
-                              "type": "number"
+                              "type": "float"
                             },
                             {
                               "type": "string"
@@ -456,7 +456,7 @@
                         "humidity_percent": {
                           "oneOf": [
                             {
-                              "type": "number"
+                              "type": "float"
                             },
                             {
                               "type": "string"
@@ -538,7 +538,7 @@
                     "tempMin_C": {
                       "oneOf": [
                         {
-                          "type": "number"
+                          "type": "float"
                         },
                         {
                           "type": "string"
@@ -548,7 +548,7 @@
                     "tempMax_C": {
                       "oneOf": [
                         {
-                          "type": "number"
+                          "type": "float"
                         },
                         {
                           "type": "string"
@@ -558,7 +558,7 @@
                     "rainfall_mm": {
                       "oneOf": [
                         {
-                          "type": "number"
+                          "type": "float"
                         },
                         {
                           "type": "string"
@@ -568,7 +568,7 @@
                     "evaporation_mm": {
                       "oneOf": [
                         {
-                          "type": "number"
+                          "type": "float"
                         },
                         {
                           "type": "string"
@@ -578,7 +578,7 @@
                     "sunshineHours_hours": {
                       "oneOf": [
                         {
-                          "type": "number"
+                          "type": "float"
                         },
                         {
                           "type": "string"
@@ -586,19 +586,12 @@
                       ]
                     },
                     "windWindDir": {
-                      "oneOf": [
-                        {
-                          "type": "number"
-                        },
-                        {
-                          "type": "string"
-                        }
-                      ]
+                      "type": "string"
                     },
                     "maxWindSpeed_kmh": {
                       "oneOf": [
                         {
-                          "type": "number"
+                          "type": "float"
                         },
                         {
                           "type": "string"
@@ -606,14 +599,7 @@
                       ]
                     },
                     "maxWindTime": {
-                      "oneOf": [
-                        {
-                          "type": "number"
-                        },
-                        {
-                          "type": "string"
-                        }
-                      ]
+                      "type": "string"
                     },
                     "9am": {
                       "type": "object",
@@ -621,7 +607,7 @@
                         "temp_C": {
                           "oneOf": [
                             {
-                              "type": "number"
+                              "type": "float"
                             },
                             {
                               "type": "string"
@@ -631,7 +617,7 @@
                         "humidity_percent": {
                           "oneOf": [
                             {
-                              "type": "number"
+                              "type": "float"
                             },
                             {
                               "type": "string"
@@ -641,7 +627,7 @@
                         "cloudAmount_oktas": {
                           "oneOf": [
                             {
-                              "type": "number"
+                              "type": "float"
                             },
                             {
                               "type": "string"
@@ -649,19 +635,12 @@
                           ]
                         },
                         "windDirection": {
-                          "oneOf": [
-                            {
-                              "type": "number"
-                            },
-                            {
-                              "type": "string"
-                            }
-                          ]
+                          "type": "string"
                         },
                         "windSpeed_kmh": {
                           "oneOf": [
                             {
-                              "type": "number"
+                              "type": "float"
                             },
                             {
                               "type": "string"
@@ -671,7 +650,7 @@
                         "mslp_hPa": {
                           "oneOf": [
                             {
-                              "type": "number"
+                              "type": "float"
                             },
                             {
                               "type": "string"
@@ -686,7 +665,7 @@
                         "temp_C": {
                           "oneOf": [
                             {
-                              "type": "number"
+                              "type": "float"
                             },
                             {
                               "type": "string"
@@ -696,7 +675,7 @@
                         "humidity_percent": {
                           "oneOf": [
                             {
-                              "type": "number"
+                              "type": "float"
                             },
                             {
                               "type": "string"
@@ -706,7 +685,7 @@
                         "cloudAmount_oktas": {
                           "oneOf": [
                             {
-                              "type": "number"
+                              "type": "float"
                             },
                             {
                               "type": "string"
@@ -714,19 +693,12 @@
                           ]
                         },
                         "windDirection": {
-                          "oneOf": [
-                            {
-                              "type": "number"
-                            },
-                            {
-                              "type": "string"
-                            }
-                          ]
+                          "type": "string"
                         },
                         "windSpeed_kmh": {
                           "oneOf": [
                             {
-                              "type": "number"
+                              "type": "float"
                             },
                             {
                               "type": "string"
@@ -736,7 +708,7 @@
                         "mslp_hPa": {
                           "oneOf": [
                             {
-                              "type": "number"
+                              "type": "float"
                             },
                             {
                               "type": "string"
