@@ -37,20 +37,47 @@
               "application/json": {
                 "schema": { "$ref": "#/components/schemas/ADAGEWeatherRecord" },
                 "example": {
-                  "events": [
-                    {
-                      "event_attributes": {
-                        "date": "2026-03-18",
-                        "tempMin": 15,
-                        "tempMax": 25,
-                        "rainfall": 5,
-                        "sunshineHours": 10,
-                        "windGustSpeed": 30,
-                        "9am": { "temp": 18, "humidity": 65 },
-                        "3pm": { "temp": 23, "humidity": 55 }
-                      }
-                    }
-                  ]
+                    "data_source": "BOM",
+                    "dataset_type": "Daily weather observations",
+                    "dataset_id": "s3://clearpath-weather-index-v1/weather_collected/2026-03-18.json",
+                    "events": [
+                        {
+                            "event_type": "Daily weather observations",
+                            "event_time": {
+                                "time_stamp": "2026-03-18T09:00:00",
+                                "duration": 86400,
+                                "duration_unit": "seconds",
+                                "time_zone": "Australia/Sydney"
+                            },
+                            "event_attributes": {
+                                "date": "2026-03-18",
+                                "tempMin_C": 19.6,
+                                "tempMax_C": 23.3,
+                                "rainfall_mm": 55.0,
+                                "evaporation_mm": "Unavailable",
+                                "sunshineHours_hours": "Unavailable",
+                                "windWindDir": "S",
+                                "maxWindSpeed_kmh": 41.0,
+                                "maxWindTime": "00:59",
+                                "9am": {
+                                    "temp_C": 20.3,
+                                    "humidity_percent": 91.0,
+                                    "cloudAmount_oktas": 7.0,
+                                    "windDirection": "SSW",
+                                    "windSpeed_kmh": 19.0,
+                                    "mslp_hPa": 1022.0
+                                },
+                                "3pm": {
+                                    "temp_C": 22.7,
+                                    "humidity_percent": 81.0,
+                                    "cloudAmount_oktas": 7.0,
+                                    "windDirection": "S",
+                                    "windSpeed_kmh": 15.0,
+                                    "mslp_hPa": 1020.1
+                                }
+                            }
+                        }
+                    ]
                 }
               }
             }
@@ -299,31 +326,276 @@
         }
       },
       "ADAGEWeatherRecord": {
+  "type": "object",
+  "properties": {
+    "data_source": {
+      "type": "string"
+    },
+    "dataset_type": {
+      "type": "string"
+    },
+    "dataset_id": {
+      "type": "string"
+    },
+    "time_object": {
+      "type": "object",
+      "properties": {
+        "timestamp": {
+          "type": "string"
+        },
+        "timezone": {
+          "type": "string"
+        }
+      }
+    },
+    "events": {
+      "type": "array",
+      "items": {
         "type": "object",
         "properties": {
-          "events": {
-            "type": "array",
-            "items": {
-              "type": "object",
-              "properties": {
-                "event_attributes": {
-                  "type": "object",
-                  "properties": {
-                    "date": { "type": "string", "format": "date" },
-                    "tempMin": { "type": "number" },
-                    "tempMax": { "type": "number" },
-                    "rainfall": { "type": "number" },
-                    "sunshineHours": { "type": "number" },
-                    "windGustSpeed": { "type": "number" },
-                    "9am": { "type": "object", "properties": { "temp": { "type": "number" }, "humidity": { "type": "number" } } },
-                    "3pm": { "type": "object", "properties": { "temp": { "type": "number" }, "humidity": { "type": "number" } } }
+          "event_type": {
+            "type": "string"
+          },
+          "event_time": {
+            "type": "object",
+            "properties": {
+              "timestamp": {
+                "type": "string"
+              },
+              "duration": {
+                "type": "integer"
+              },
+              "duration_unit": {
+                "type": "string"
+              },
+              "timezone": {
+                "type": "string"
+              }
+            }
+          },
+          "event_attributes": {
+            "type": "object",
+            "properties": {
+              "date": {
+                "type": "string"
+              },
+              "tempMin_C": {
+                "oneOf": [
+                  {
+                    "type": "number"
+                  },
+                  {
+                    "type": "string"
+                  }
+                ]
+              },
+              "tempMax_C": {
+                "oneOf": [
+                  {
+                    "type": "number"
+                  },
+                  {
+                    "type": "string"
+                  }
+                ]
+              },
+              "rainfall_mm": {
+                "oneOf": [
+                  {
+                    "type": "number"
+                  },
+                  {
+                    "type": "string"
+                  }
+                ]
+              },
+              "evaporation_mm": {
+                "oneOf": [
+                  {
+                    "type": "number"
+                  },
+                  {
+                    "type": "string"
+                  }
+                ]
+              },
+              "sunshineHours_hours": {
+                "oneOf": [
+                  {
+                    "type": "number"
+                  },
+                  {
+                    "type": "string"
+                  }
+                ]
+              },
+              "windWindDir": {
+                "oneOf": [
+                  {
+                    "type": "number"
+                  },
+                  {
+                    "type": "string"
+                  }
+                ]
+              },
+              "maxWindSpeed_kmh": {
+                "oneOf": [
+                  {
+                    "type": "number"
+                  },
+                  {
+                    "type": "string"
+                  }
+                ]
+              },
+              "maxWindTime": {
+                "oneOf": [
+                  {
+                    "type": "number"
+                  },
+                  {
+                    "type": "string"
+                  }
+                ]
+              },
+              "9am": {
+                "type": "object",
+                "properties": {
+                  "temp_C": {
+                    "oneOf": [
+                      {
+                        "type": "number"
+                      },
+                      {
+                        "type": "string"
+                      }
+                    ]
+                  },
+                  "humidity_percent": {
+                    "oneOf": [
+                      {
+                        "type": "number"
+                      },
+                      {
+                        "type": "string"
+                      }
+                    ]
+                  },
+                  "cloudAmount_oktas": {
+                    "oneOf": [
+                      {
+                        "type": "number"
+                      },
+                      {
+                        "type": "string"
+                      }
+                    ]
+                  },
+                  "windDirection": {
+                    "oneOf": [
+                      {
+                        "type": "number"
+                      },
+                      {
+                        "type": "string"
+                      }
+                    ]
+                  },
+                  "windSpeed_kmh": {
+                    "oneOf": [
+                      {
+                        "type": "number"
+                      },
+                      {
+                        "type": "string"
+                      }
+                    ]
+                  },
+                  "mslp_hPa": {
+                    "oneOf": [
+                      {
+                        "type": "number"
+                      },
+                      {
+                        "type": "string"
+                      }
+                    ]
+                  }
+                }
+              },
+              "3pm": {
+                "type": "object",
+                "properties": {
+                  "temp_C": {
+                    "oneOf": [
+                      {
+                        "type": "number"
+                      },
+                      {
+                        "type": "string"
+                      }
+                    ]
+                  },
+                  "humidity_percent": {
+                    "oneOf": [
+                      {
+                        "type": "number"
+                      },
+                      {
+                        "type": "string"
+                      }
+                    ]
+                  },
+                  "cloudAmount_oktas": {
+                    "oneOf": [
+                      {
+                        "type": "number"
+                      },
+                      {
+                        "type": "string"
+                      }
+                    ]
+                  },
+                  "windDirection": {
+                    "oneOf": [
+                      {
+                        "type": "number"
+                      },
+                      {
+                        "type": "string"
+                      }
+                    ]
+                  },
+                  "windSpeed_kmh": {
+                    "oneOf": [
+                      {
+                        "type": "number"
+                      },
+                      {
+                        "type": "string"
+                      }
+                    ]
+                  },
+                  "mslp_hPa": {
+                    "oneOf": [
+                      {
+                        "type": "number"
+                      },
+                      {
+                        "type": "string"
+                      }
+                    ]
                   }
                 }
               }
             }
           }
         }
-      },
+      }
+    }
+  }
+},
       "ADAGETweetDataset": {
         "type": "object",
         "properties": {
