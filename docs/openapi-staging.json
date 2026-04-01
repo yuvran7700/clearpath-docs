@@ -368,7 +368,7 @@
                     "tempMin_C": {
                       "oneOf": [
                         {
-                          "type": "number", "format": "float"'
+                          "type": "number", "format": "float"
                         },
                         {
                           "type": "string"
@@ -378,7 +378,7 @@
                     "tempMax_C": {
                       "oneOf": [
                         {
-                          "type": "number", "format": "float"'
+                          "type": "number", "format": "float"
                         },
                         {
                           "type": "string"
@@ -388,7 +388,7 @@
                     "rainfall_mm": {
                       "oneOf": [
                         {
-                          "type": "number", "format": "float"'
+                          "type": "number", "format": "float"
                         },
                         {
                           "type": "string"
@@ -398,7 +398,7 @@
                     "sunshineHours_hours": {
                       "oneOf": [
                         {
-                          "type": "number", "format": "float"'
+                          "type": "number", "format": "float"
                         },
                         {
                           "type": "string"
@@ -408,7 +408,7 @@
                     "maxWindSpeed_kmh": {
                       "oneOf": [
                         {
-                          "type": "number", "format": "float"'
+                          "type": "number", "format": "float"
                         },
                         {
                           "type": "string"
@@ -421,7 +421,7 @@
                         "temp_C": {
                           "oneOf": [
                             {
-                              "type": "number", "format": "float"'
+                              "type": "number", "format": "float"
                             },
                             {
                               "type": "string"
@@ -431,7 +431,7 @@
                         "humidity_percent": {
                           "oneOf": [
                             {
-                              "type": "number", "format": "float"'
+                              "type": "number", "format": "float"
                             },
                             {
                               "type": "string"
@@ -446,7 +446,7 @@
                         "temp_C": {
                           "oneOf": [
                             {
-                              "type": "number", "format": "float"'
+                              "type": "number", "format": "float"
                             },
                             {
                               "type": "string"
@@ -456,7 +456,7 @@
                         "humidity_percent": {
                           "oneOf": [
                             {
-                              "type": "number", "format": "float"'
+                              "type": "number", "format": "float"
                             },
                             {
                               "type": "string"
@@ -538,7 +538,7 @@
                     "tempMin_C": {
                       "oneOf": [
                         {
-                          "type": "number", "format": "float"'
+                          "type": "number", "format": "float"
                         },
                         {
                           "type": "string"
@@ -548,7 +548,7 @@
                     "tempMax_C": {
                       "oneOf": [
                         {
-                          "type": "number", "format": "float"'
+                          "type": "number", "format": "float"
                         },
                         {
                           "type": "string"
@@ -558,7 +558,7 @@
                     "rainfall_mm": {
                       "oneOf": [
                         {
-                          "type": "number", "format": "float"'
+                          "type": "number", "format": "float"
                         },
                         {
                           "type": "string"
@@ -568,7 +568,7 @@
                     "evaporation_mm": {
                       "oneOf": [
                         {
-                          "type": "number", "format": "float"'
+                          "type": "number", "format": "float"
                         },
                         {
                           "type": "string"
@@ -578,7 +578,7 @@
                     "sunshineHours_hours": {
                       "oneOf": [
                         {
-                          "type": "number", "format": "float"'
+                          "type": "number", "format": "float"
                         },
                         {
                           "type": "string"
@@ -591,7 +591,7 @@
                     "maxWindSpeed_kmh": {
                       "oneOf": [
                         {
-                          "type": "number", "format": "float"'
+                          "type": "number", "format": "float"
                         },
                         {
                           "type": "string"
@@ -607,7 +607,7 @@
                         "temp_C": {
                           "oneOf": [
                             {
-                              "type": "number", "format": "float"'
+                              "type": "number", "format": "float"
                             },
                             {
                               "type": "string"
@@ -617,7 +617,7 @@
                         "humidity_percent": {
                           "oneOf": [
                             {
-                              "type": "number", "format": "float"'
+                              "type": "number", "format": "float"
                             },
                             {
                               "type": "string"
@@ -627,7 +627,7 @@
                         "cloudAmount_oktas": {
                           "oneOf": [
                             {
-                              "type": "number", "format": "float"'
+                              "type": "number", "format": "float"
                             },
                             {
                               "type": "string"
@@ -640,7 +640,7 @@
                         "windSpeed_kmh": {
                           "oneOf": [
                             {
-                              "type": "number", "format": "float"'
+                              "type": "number", "format": "float"
                             },
                             {
                               "type": "string"
@@ -650,7 +650,7 @@
                         "mslp_hPa": {
                           "oneOf": [
                             {
-                              "type": "number", "format": "float"'
+                              "type": "number", "format": "float"
                             },
                             {
                               "type": "string"
@@ -665,7 +665,7 @@
                         "temp_C": {
                           "oneOf": [
                             {
-                              "type": "number", "format": "float"'
+                              "type": "number", "format": "float"
                             },
                             {
                               "type": "string"
@@ -675,7 +675,7 @@
                         "humidity_percent": {
                           "oneOf": [
                             {
-                              "type": "number", "format": "float"'
+                              "type": "number", "format": "float"
                             },
                             {
                               "type": "string"
@@ -685,7 +685,7 @@
                         "cloudAmount_oktas": {
                           "oneOf": [
                             {
-                              "type": "number", "format": "float"'
+                              "type": "number", "format": "float"
                             },
                             {
                               "type": "string"
@@ -698,7 +698,7 @@
                         "windSpeed_kmh": {
                           "oneOf": [
                             {
-                              "type": "number", "format": "float"'
+                              "type": "number", "format": "float"
                             },
                             {
                               "type": "string"
@@ -708,7 +708,7 @@
                         "mslp_hPa": {
                           "oneOf": [
                             {
-                              "type": "number", "format": "float"'
+                              "type": "number", "format": "float"
                             },
                             {
                               "type": "string"
