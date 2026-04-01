@@ -325,177 +325,163 @@
       "WeatherRecord": {
         "type": "object",
         "properties": {
-          "date": { "type": "string", "format": "date" },
-          "eTag": { "type": "string" },
-          "tempMin": { "type": "number" },
-          "tempMax": { "type": "number" },
-          "rainfall": { "type": "number" },
-          "sunshineHours": { "type": "number" },
-          "windGustSpeed": { "type": "number" },
-          "9am": { "type": "object", "properties": { "temp": { "type": "number" }, "humidity": { "type": "number" } } },
-          "3pm": { "type": "object", "properties": { "temp": { "type": "number" }, "humidity": { "type": "number" } } },
-          "Weather_Severity": {
-            "type": "object",
-            "properties": {
-              "data_source": {
-                "type": "string"
-              },
-              "dataset_type": {
-                "type": "string"
-              },
-              "dataset_id": {
-                "type": "string"
-              },
-              "events": {
-                "type": "array",
-                "items": {
+          "data_source": {
+            "type": "string"
+          },
+          "dataset_type": {
+            "type": "string"
+          },
+          "dataset_id": {
+            "type": "string"
+          },
+          "events": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "event_type": {
+                  "type": "string"
+                },
+                "event_time": {
                   "type": "object",
                   "properties": {
-                    "event_type": {
+                    "timestamp": {
                       "type": "string"
                     },
-                    "event_time": {
+                    "duration": {
+                      "type": "integer"
+                    },
+                    "duration_unit": {
+                      "type": "string"
+                    },
+                    "timezone": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "event_attributes": {
+                  "type": "object",
+                  "properties": {
+                    "date": {
+                      "type": "string"
+                    },
+                    "tempMin_C": {
+                      "oneOf": [
+                        {
+                          "type": "number"
+                        },
+                        {
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "tempMax_C": {
+                      "oneOf": [
+                        {
+                          "type": "number"
+                        },
+                        {
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "rainfall_mm": {
+                      "oneOf": [
+                        {
+                          "type": "number"
+                        },
+                        {
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "sunshineHours_hours": {
+                      "oneOf": [
+                        {
+                          "type": "number"
+                        },
+                        {
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "maxWindSpeed_kmh": {
+                      "oneOf": [
+                        {
+                          "type": "number"
+                        },
+                        {
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "9am": {
                       "type": "object",
                       "properties": {
-                        "timestamp": {
-                          "type": "string"
+                        "temp_C": {
+                          "oneOf": [
+                            {
+                              "type": "number"
+                            },
+                            {
+                              "type": "string"
+                            }
+                          ]
                         },
-                        "duration": {
-                          "type": "integer"
-                        },
-                        "duration_unit": {
-                          "type": "string"
-                        },
-                        "timezone": {
-                          "type": "string"
+                        "humidity_percent": {
+                          "oneOf": [
+                            {
+                              "type": "number"
+                            },
+                            {
+                              "type": "string"
+                            }
+                          ]
                         }
                       }
                     },
-                    "event_attributes": {
+                    "3pm": {
                       "type": "object",
                       "properties": {
-                        "date": {
+                        "temp_C": {
+                          "oneOf": [
+                            {
+                              "type": "number"
+                            },
+                            {
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "humidity_percent": {
+                          "oneOf": [
+                            {
+                              "type": "number"
+                            },
+                            {
+                              "type": "string"
+                            }
+                          ]
+                        }
+                      }
+                    },
+                    "weatherSeverity": {
+                      "type": "object",
+                      "properties": {
+                        "sunSeverity": {
                           "type": "string"
                         },
-                        "tempMin_C": {
-                          "oneOf": [
-                            {
-                              "type": "number"
-                            },
-                            {
-                              "type": "string"
-                            }
-                          ]
+                        "rainSeverity": {
+                          "type": "string"
                         },
-                        "tempMax_C": {
-                          "oneOf": [
-                            {
-                              "type": "number"
-                            },
-                            {
-                              "type": "string"
-                            }
-                          ]
+                        "tempSeverity": {
+                          "type": "string"
                         },
-                        "rainfall_mm": {
-                          "oneOf": [
-                            {
-                              "type": "number"
-                            },
-                            {
-                              "type": "string"
-                            }
-                          ]
+                        "windSeverity": {
+                          "type": "string"
                         },
-                        "sunshineHours_hours": {
-                          "oneOf": [
-                            {
-                              "type": "number"
-                            },
-                            {
-                              "type": "string"
-                            }
-                          ]
-                        },
-                        "maxWindSpeed_kmh": {
-                          "oneOf": [
-                            {
-                              "type": "number"
-                            },
-                            {
-                              "type": "string"
-                            }
-                          ]
-                        },
-                        "9am": {
-                          "type": "object",
-                          "properties": {
-                            "temp_C": {
-                              "oneOf": [
-                                {
-                                  "type": "number"
-                                },
-                                {
-                                  "type": "string"
-                                }
-                              ]
-                            },
-                            "humidity_percent": {
-                              "oneOf": [
-                                {
-                                  "type": "number"
-                                },
-                                {
-                                  "type": "string"
-                                }
-                              ]
-                            }
-                          }
-                        },
-                        "3pm": {
-                          "type": "object",
-                          "properties": {
-                            "temp_C": {
-                              "oneOf": [
-                                {
-                                  "type": "number"
-                                },
-                                {
-                                  "type": "string"
-                                }
-                              ]
-                            },
-                            "humidity_percent": {
-                              "oneOf": [
-                                {
-                                  "type": "number"
-                                },
-                                {
-                                  "type": "string"
-                                }
-                              ]
-                            }
-                          }
-                        },
-                        "weatherSeverity": {
-                          "type": "object",
-                          "properties": {
-                            "sunSeverity": {
-                              "type": "string"
-                            },
-                            "rainSeverity": {
-                              "type": "string"
-                            },
-                            "tempSeverity": {
-                              "type": "string"
-                            },
-                            "windSeverity": {
-                              "type": "string"
-                            },
-                            "humiditySeverity": {
-                              "type": "string"
-                            }
-                          }
+                        "humiditySeverity": {
+                          "type": "string"
                         }
                       }
                     }
