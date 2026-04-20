@@ -37,47 +37,47 @@
               "application/json": {
                 "schema": { "$ref": "#/components/schemas/ADAGEWeatherRecord" },
                 "example": {
-                    "data_source": "BOM",
-                    "dataset_type": "Daily weather observations",
-                    "dataset_id": "s3://clearpath-weather-index-v1/weather_collected/2026-03-18.json",
-                    "events": [
-                        {
-                            "event_type": "Daily weather observations",
-                            "event_time": {
-                                "time_stamp": "2026-03-18T09:00:00",
-                                "duration": 86400,
-                                "duration_unit": "seconds",
-                                "time_zone": "Australia/Sydney"
-                            },
-                            "event_attributes": {
-                                "date": "2026-03-18",
-                                "tempMin_C": 19.6,
-                                "tempMax_C": 23.3,
-                                "rainfall_mm": 55.0,
-                                "evaporation_mm": "Unavailable",
-                                "sunshineHours_hours": "Unavailable",
-                                "windWindDir": "S",
-                                "maxWindSpeed_kmh": 41.0,
-                                "maxWindTime": "00:59",
-                                "9am": {
-                                    "temp_C": 20.3,
-                                    "humidity_percent": 91.0,
-                                    "cloudAmount_oktas": 7.0,
-                                    "windDirection": "SSW",
-                                    "windSpeed_kmh": 19.0,
-                                    "mslp_hPa": 1022.0
-                                },
-                                "3pm": {
-                                    "temp_C": 22.7,
-                                    "humidity_percent": 81.0,
-                                    "cloudAmount_oktas": 7.0,
-                                    "windDirection": "S",
-                                    "windSpeed_kmh": 15.0,
-                                    "mslp_hPa": 1020.1
-                                }
-                            }
+                  "data_source": "BOM",
+                  "dataset_type": "Daily weather observations",
+                  "dataset_id": "s3://clearpath-weather-index-v1/weather_collected/2026-03-18.json",
+                  "events": [
+                    {
+                      "event_type": "Daily weather observations",
+                      "event_time": {
+                        "time_stamp": "2026-03-18T09:00:00",
+                        "duration": 86400,
+                        "duration_unit": "seconds",
+                        "time_zone": "Australia/Sydney"
+                      },
+                      "event_attributes": {
+                        "date": "2026-03-18",
+                        "tempMin_C": 19.6,
+                        "tempMax_C": 23.3,
+                        "rainfall_mm": 55.0,
+                        "evaporation_mm": "Unavailable",
+                        "sunshineHours_hours": "Unavailable",
+                        "windWindDir": "S",
+                        "maxWindSpeed_kmh": 41.0,
+                        "maxWindTime": "00:59",
+                        "9am": {
+                          "temp_C": 20.3,
+                          "humidity_percent": 91.0,
+                          "cloudAmount_oktas": 7.0,
+                          "windDirection": "SSW",
+                          "windSpeed_kmh": 19.0,
+                          "mslp_hPa": 1022.0
+                        },
+                        "3pm": {
+                          "temp_C": 22.7,
+                          "humidity_percent": 81.0,
+                          "cloudAmount_oktas": 7.0,
+                          "windDirection": "S",
+                          "windSpeed_kmh": 15.0,
+                          "mslp_hPa": 1020.1
                         }
-                    ]
+                      }
+                    }
+                  ]
                 }
               }
             }
@@ -141,40 +141,40 @@
                   "dataset_type": "Weather observations and severity",
                   "dataset_id": "dynamodb://clearpath-weather-data/2026-03-18",
                   "events": [
-                      {
-                          "event_type": "Weather observations and severity",
-                          "event_time": {
-                              "time_stamp": "2026-03-18T09:00:00",
-                              "duration": 86400,
-                              "duration_unit": "seconds",
-                              "time_zone": "Australia/Sydney"
-                          },
-                          "event_attributes": {
-                              "date": "2026-03-18",
-                              "tempMin_C": 19.6,
-                              "tempMax_C": 23.3,
-                              "rainfall_mm": 55.0,
-                              "sunshineHours_hours": "Unavailable",
-                              "maxWindSpeed_kmh": 41.0,
-                              "9am": {
-                                  "temp_C": 20.3,
-                                  "humidity_percent": 91.0
-                              },
-                              "3pm": {
-                                  "temp_C": 22.7,
-                                  "humidity_percent": 81.0
-                              },
-                              "weatherSeverity": {
-                                  "sunSeverity": "N/A",
-                                  "rainSeverity": "Heavy rain",
-                                  "tempSeverity": "Mild",
-                                  "windSeverity": "Windy",
-                                  "humiditySeverity": "Extreme Humidity"
-                              }
-                          }
+                    {
+                      "event_type": "Weather observations and severity",
+                      "event_time": {
+                        "time_stamp": "2026-03-18T09:00:00",
+                        "duration": 86400,
+                        "duration_unit": "seconds",
+                        "time_zone": "Australia/Sydney"
+                      },
+                      "event_attributes": {
+                        "date": "2026-03-18",
+                        "tempMin_C": 19.6,
+                        "tempMax_C": 23.3,
+                        "rainfall_mm": 55.0,
+                        "sunshineHours_hours": "Unavailable",
+                        "maxWindSpeed_kmh": 41.0,
+                        "9am": {
+                          "temp_C": 20.3,
+                          "humidity_percent": 91.0
+                        },
+                        "3pm": {
+                          "temp_C": 22.7,
+                          "humidity_percent": 81.0
+                        },
+                        "weatherSeverity": {
+                          "sunSeverity": "N/A",
+                          "rainSeverity": "Heavy rain",
+                          "tempSeverity": "Mild",
+                          "windSeverity": "Windy",
+                          "humiditySeverity": "Extreme Humidity"
+                        }
                       }
+                    }
                   ]
-              }
+                }
               }
             }
           },
@@ -318,6 +318,166 @@
           }
         }
       }
+    },
+    "/transport/disruption-forecast": {
+      "get": {
+        "summary": "Get 5-day disruption risk forecast",
+        "description": "Fetches a 5-day weather forecast for a given location, classifies each day's conditions into severity labels, and returns a predicted disruption risk score and risk level per day.",
+        "operationId": "getDisruptionForecast",
+        "parameters": [
+          {
+            "name": "lat",
+            "in": "query",
+            "required": false,
+            "description": "Latitude of the location. Defaults to Parramatta (-33.8150).",
+            "schema": {
+              "type": "number",
+              "format": "float",
+              "example": -33.8150
+            }
+          },
+          {
+            "name": "lon",
+            "in": "query",
+            "required": false,
+            "description": "Longitude of the location. Defaults to Parramatta (151.0011).",
+            "schema": {
+              "type": "number",
+              "format": "float",
+              "example": 151.0011
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response with 5-day disruption risk forecast.",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/DisruptionForecastResponse" },
+                "example": {
+                  "lat": -33.8150,
+                  "lon": 151.0011,
+                  "days": [
+                    {
+                      "date": "2026-04-20",
+                      "weather_summary": "Light rain",
+                      "tempSeverity": "Mild",
+                      "rainSeverity": "Light rain",
+                      "windSeverity": "Breezy",
+                      "humiditySeverity": "High Humidity",
+                      "sunSeverity": "Cloudy",
+                      "risk": 0.3601,
+                      "risk_level": "Moderate",
+                      "message": "Based on forecasted conditions, this train line has a 36% estimated disruption risk (Moderate)."
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error.",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ErrorResponse" },
+                "example": { "error": "Internal server error" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/transport/disruption-analytics": {
+      "get": {
+        "summary": "Get historical disruption analytics",
+        "description": "Returns historical disruption statistics from the joined weather-alert table, including disruption rate by day of week, by month, trend over time, and weather condition breakdown.",
+        "operationId": "getDisruptionAnalytics",
+        "responses": {
+          "200": {
+            "description": "Successful response with historical disruption analytics.",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/DisruptionAnalyticsResponse" },
+                "example": {
+                  "location": "parramatta",
+                  "overall": {
+                    "total_days": 393,
+                    "total_disruption_days": 153,
+                    "overall_disruption_rate": 0.3893,
+                    "data_from": "2025-01-01",
+                    "data_to": "2026-04-20"
+                  },
+                  "best_worst_day_of_week": {
+                    "all_time": {
+                      "by_day": [
+                        {
+                          "label": "Saturday",
+                          "disruption_rate": 0.2414,
+                          "sample_size": 58,
+                          "disruption_days": 14,
+                          "non_disruption_days": 44
+                        }
+                      ],
+                      "best": "Saturday",
+                      "worst": "Tuesday"
+                    }
+                  },
+                  "best_worst_month": {
+                    "all_time": {
+                      "by_month": [
+                        {
+                          "label": "May",
+                          "disruption_rate": 0.0,
+                          "sample_size": 31,
+                          "disruption_days": 0,
+                          "non_disruption_days": 31
+                        }
+                      ],
+                      "best": "May",
+                      "worst": "January"
+                    }
+                  },
+                  "weather_threshold_analysis": {
+                    "temperature": [
+                      {
+                        "threshold_c": 25,
+                        "disruption_rate": 0.45,
+                        "sample_size": 120,
+                        "disruption_days": 54
+                      }
+                    ],
+                    "wind": [
+                      {
+                        "threshold_kmh": 30,
+                        "disruption_rate": 0.42,
+                        "sample_size": 85,
+                        "disruption_days": 36
+                      }
+                    ],
+                    "rainfall": [
+                      {
+                        "threshold_mm": 10,
+                        "disruption_rate": 0.41,
+                        "sample_size": 50,
+                        "disruption_days": 21
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error.",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ErrorResponse" },
+                "example": { "error": "Internal server error" }
+              }
+            }
+          }
+        }
+      }
     }
   },
   "components": {
@@ -325,164 +485,55 @@
       "WeatherRecord": {
         "type": "object",
         "properties": {
-          "data_source": {
-            "type": "string"
-          },
-          "dataset_type": {
-            "type": "string"
-          },
-          "dataset_id": {
-            "type": "string"
-          },
+          "data_source": { "type": "string" },
+          "dataset_type": { "type": "string" },
+          "dataset_id": { "type": "string" },
           "events": {
             "type": "array",
             "items": {
               "type": "object",
               "properties": {
-                "event_type": {
-                  "type": "string"
-                },
+                "event_type": { "type": "string" },
                 "event_time": {
                   "type": "object",
                   "properties": {
-                    "time_stamp": {
-                      "type": "string"
-                    },
-                    "duration": {
-                      "type": "integer"
-                    },
-                    "duration_unit": {
-                      "type": "string"
-                    },
-                    "time_zone": {
-                      "type": "string"
-                    }
+                    "time_stamp": { "type": "string" },
+                    "duration": { "type": "integer" },
+                    "duration_unit": { "type": "string" },
+                    "time_zone": { "type": "string" }
                   }
                 },
                 "event_attributes": {
                   "type": "object",
                   "properties": {
-                    "date": {
-                      "type": "string"
-                    },
-                    "tempMin_C": {
-                      "oneOf": [
-                        {
-                          "type": "number", "format": "float"
-                        },
-                        {
-                          "type": "string"
-                        }
-                      ]
-                    },
-                    "tempMax_C": {
-                      "oneOf": [
-                        {
-                          "type": "number", "format": "float"
-                        },
-                        {
-                          "type": "string"
-                        }
-                      ]
-                    },
-                    "rainfall_mm": {
-                      "oneOf": [
-                        {
-                          "type": "number", "format": "float"
-                        },
-                        {
-                          "type": "string"
-                        }
-                      ]
-                    },
-                    "sunshineHours_hours": {
-                      "oneOf": [
-                        {
-                          "type": "number", "format": "float"
-                        },
-                        {
-                          "type": "string"
-                        }
-                      ]
-                    },
-                    "maxWindSpeed_kmh": {
-                      "oneOf": [
-                        {
-                          "type": "number", "format": "float"
-                        },
-                        {
-                          "type": "string"
-                        }
-                      ]
-                    },
+                    "date": { "type": "string" },
+                    "tempMin_C": { "oneOf": [{ "type": "number", "format": "float" }, { "type": "string" }] },
+                    "tempMax_C": { "oneOf": [{ "type": "number", "format": "float" }, { "type": "string" }] },
+                    "rainfall_mm": { "oneOf": [{ "type": "number", "format": "float" }, { "type": "string" }] },
+                    "sunshineHours_hours": { "oneOf": [{ "type": "number", "format": "float" }, { "type": "string" }] },
+                    "maxWindSpeed_kmh": { "oneOf": [{ "type": "number", "format": "float" }, { "type": "string" }] },
                     "9am": {
                       "type": "object",
                       "properties": {
-                        "temp_C": {
-                          "oneOf": [
-                            {
-                              "type": "number", "format": "float"
-                            },
-                            {
-                              "type": "string"
-                            }
-                          ]
-                        },
-                        "humidity_percent": {
-                          "oneOf": [
-                            {
-                              "type": "number", "format": "float"
-                            },
-                            {
-                              "type": "string"
-                            }
-                          ]
-                        }
+                        "temp_C": { "oneOf": [{ "type": "number", "format": "float" }, { "type": "string" }] },
+                        "humidity_percent": { "oneOf": [{ "type": "number", "format": "float" }, { "type": "string" }] }
                       }
                     },
                     "3pm": {
                       "type": "object",
                       "properties": {
-                        "temp_C": {
-                          "oneOf": [
-                            {
-                              "type": "number", "format": "float"
-                            },
-                            {
-                              "type": "string"
-                            }
-                          ]
-                        },
-                        "humidity_percent": {
-                          "oneOf": [
-                            {
-                              "type": "number", "format": "float"
-                            },
-                            {
-                              "type": "string"
-                            }
-                          ]
-                        }
+                        "temp_C": { "oneOf": [{ "type": "number", "format": "float" }, { "type": "string" }] },
+                        "humidity_percent": { "oneOf": [{ "type": "number", "format": "float" }, { "type": "string" }] }
                       }
                     },
                     "weatherSeverity": {
                       "type": "object",
                       "properties": {
-                        "sunSeverity": {
-                          "type": "string"
-                        },
-                        "rainSeverity": {
-                          "type": "string"
-                        },
-                        "tempSeverity": {
-                          "type": "string"
-                        },
-                        "windSeverity": {
-                          "type": "string"
-                        },
-                        "humiditySeverity": {
-                          "type": "string"
-                        }
+                        "sunSeverity": { "type": "string" },
+                        "rainSeverity": { "type": "string" },
+                        "tempSeverity": { "type": "string" },
+                        "windSeverity": { "type": "string" },
+                        "humiditySeverity": { "type": "string" }
                       }
                     }
                   }
@@ -495,226 +546,56 @@
       "ADAGEWeatherRecord": {
         "type": "object",
         "properties": {
-          "data_source": {
-            "type": "string"
-          },
-          "dataset_type": {
-            "type": "string"
-          },
-          "dataset_id": {
-            "type": "string"
-          },
+          "data_source": { "type": "string" },
+          "dataset_type": { "type": "string" },
+          "dataset_id": { "type": "string" },
           "events": {
             "type": "array",
             "items": {
               "type": "object",
               "properties": {
-                "event_type": {
-                  "type": "string"
-                },
+                "event_type": { "type": "string" },
                 "event_time": {
                   "type": "object",
                   "properties": {
-                    "time_stamp": {
-                      "type": "string"
-                    },
-                    "duration": {
-                      "type": "integer"
-                    },
-                    "duration_unit": {
-                      "type": "string"
-                    },
-                    "time_zone": {
-                      "type": "string"
-                    }
+                    "time_stamp": { "type": "string" },
+                    "duration": { "type": "integer" },
+                    "duration_unit": { "type": "string" },
+                    "time_zone": { "type": "string" }
                   }
                 },
                 "event_attributes": {
                   "type": "object",
                   "properties": {
-                    "date": {
-                      "type": "string"
-                    },
-                    "tempMin_C": {
-                      "oneOf": [
-                        {
-                          "type": "number", "format": "float"
-                        },
-                        {
-                          "type": "string"
-                        }
-                      ]
-                    },
-                    "tempMax_C": {
-                      "oneOf": [
-                        {
-                          "type": "number", "format": "float"
-                        },
-                        {
-                          "type": "string"
-                        }
-                      ]
-                    },
-                    "rainfall_mm": {
-                      "oneOf": [
-                        {
-                          "type": "number", "format": "float"
-                        },
-                        {
-                          "type": "string"
-                        }
-                      ]
-                    },
-                    "evaporation_mm": {
-                      "oneOf": [
-                        {
-                          "type": "number", "format": "float"
-                        },
-                        {
-                          "type": "string"
-                        }
-                      ]
-                    },
-                    "sunshineHours_hours": {
-                      "oneOf": [
-                        {
-                          "type": "number", "format": "float"
-                        },
-                        {
-                          "type": "string"
-                        }
-                      ]
-                    },
-                    "windWindDir": {
-                      "type": "string"
-                    },
-                    "maxWindSpeed_kmh": {
-                      "oneOf": [
-                        {
-                          "type": "number", "format": "float"
-                        },
-                        {
-                          "type": "string"
-                        }
-                      ]
-                    },
-                    "maxWindTime": {
-                      "type": "string"
-                    },
+                    "date": { "type": "string" },
+                    "tempMin_C": { "oneOf": [{ "type": "number", "format": "float" }, { "type": "string" }] },
+                    "tempMax_C": { "oneOf": [{ "type": "number", "format": "float" }, { "type": "string" }] },
+                    "rainfall_mm": { "oneOf": [{ "type": "number", "format": "float" }, { "type": "string" }] },
+                    "evaporation_mm": { "oneOf": [{ "type": "number", "format": "float" }, { "type": "string" }] },
+                    "sunshineHours_hours": { "oneOf": [{ "type": "number", "format": "float" }, { "type": "string" }] },
+                    "windWindDir": { "type": "string" },
+                    "maxWindSpeed_kmh": { "oneOf": [{ "type": "number", "format": "float" }, { "type": "string" }] },
+                    "maxWindTime": { "type": "string" },
                     "9am": {
                       "type": "object",
                       "properties": {
-                        "temp_C": {
-                          "oneOf": [
-                            {
-                              "type": "number", "format": "float"
-                            },
-                            {
-                              "type": "string"
-                            }
-                          ]
-                        },
-                        "humidity_percent": {
-                          "oneOf": [
-                            {
-                              "type": "number", "format": "float"
-                            },
-                            {
-                              "type": "string"
-                            }
-                          ]
-                        },
-                        "cloudAmount_oktas": {
-                          "oneOf": [
-                            {
-                              "type": "number", "format": "float"
-                            },
-                            {
-                              "type": "string"
-                            }
-                          ]
-                        },
-                        "windDirection": {
-                          "type": "string"
-                        },
-                        "windSpeed_kmh": {
-                          "oneOf": [
-                            {
-                              "type": "number", "format": "float"
-                            },
-                            {
-                              "type": "string"
-                            }
-                          ]
-                        },
-                        "mslp_hPa": {
-                          "oneOf": [
-                            {
-                              "type": "number", "format": "float"
-                            },
-                            {
-                              "type": "string"
-                            }
-                          ]
-                        }
+                        "temp_C": { "oneOf": [{ "type": "number", "format": "float" }, { "type": "string" }] },
+                        "humidity_percent": { "oneOf": [{ "type": "number", "format": "float" }, { "type": "string" }] },
+                        "cloudAmount_oktas": { "oneOf": [{ "type": "number", "format": "float" }, { "type": "string" }] },
+                        "windDirection": { "type": "string" },
+                        "windSpeed_kmh": { "oneOf": [{ "type": "number", "format": "float" }, { "type": "string" }] },
+                        "mslp_hPa": { "oneOf": [{ "type": "number", "format": "float" }, { "type": "string" }] }
                       }
                     },
                     "3pm": {
                       "type": "object",
                       "properties": {
-                        "temp_C": {
-                          "oneOf": [
-                            {
-                              "type": "number", "format": "float"
-                            },
-                            {
-                              "type": "string"
-                            }
-                          ]
-                        },
-                        "humidity_percent": {
-                          "oneOf": [
-                            {
-                              "type": "number", "format": "float"
-                            },
-                            {
-                              "type": "string"
-                            }
-                          ]
-                        },
-                        "cloudAmount_oktas": {
-                          "oneOf": [
-                            {
-                              "type": "number", "format": "float"
-                            },
-                            {
-                              "type": "string"
-                            }
-                          ]
-                        },
-                        "windDirection": {
-                          "type": "string"
-                        },
-                        "windSpeed_kmh": {
-                          "oneOf": [
-                            {
-                              "type": "number", "format": "float"
-                            },
-                            {
-                              "type": "string"
-                            }
-                          ]
-                        },
-                        "mslp_hPa": {
-                          "oneOf": [
-                            {
-                              "type": "number", "format": "float"
-                            },
-                            {
-                              "type": "string"
-                            }
-                          ]
-                        }
+                        "temp_C": { "oneOf": [{ "type": "number", "format": "float" }, { "type": "string" }] },
+                        "humidity_percent": { "oneOf": [{ "type": "number", "format": "float" }, { "type": "string" }] },
+                        "cloudAmount_oktas": { "oneOf": [{ "type": "number", "format": "float" }, { "type": "string" }] },
+                        "windDirection": { "type": "string" },
+                        "windSpeed_kmh": { "oneOf": [{ "type": "number", "format": "float" }, { "type": "string" }] },
+                        "mslp_hPa": { "oneOf": [{ "type": "number", "format": "float" }, { "type": "string" }] }
                       }
                     }
                   }
@@ -730,15 +611,171 @@
           "data_source": { "type": "string" },
           "dataset_type": { "type": "string" },
           "dataset_id": { "type": "string" },
-          "time_object": { "type": "object", "properties": { "timestamp": { "type": "string" }, "timezone": { "type": "string" } } },
+          "time_object": {
+            "type": "object",
+            "properties": {
+              "timestamp": { "type": "string" },
+              "timezone": { "type": "string" }
+            }
+          },
           "events": {
             "type": "array",
             "items": {
               "type": "object",
               "properties": {
-                "time_object": { "type": "object", "properties": { "timestamp": { "type": "string" }, "duration": { "type": "integer" }, "duration_unit": { "type": "string" }, "timezone": { "type": "string" } } },
+                "time_object": {
+                  "type": "object",
+                  "properties": {
+                    "timestamp": { "type": "string" },
+                    "duration": { "type": "integer" },
+                    "duration_unit": { "type": "string" },
+                    "timezone": { "type": "string" }
+                  }
+                },
                 "event_type": { "type": "string" },
-                "attribute": { "type": "object", "properties": { "account_name": { "type": "string" }, "text": { "type": "string" }, "date": { "type": "string", "format": "date" } } }
+                "attribute": {
+                  "type": "object",
+                  "properties": {
+                    "account_name": { "type": "string" },
+                    "text": { "type": "string" },
+                    "date": { "type": "string", "format": "date" }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "DisruptionForecastResponse": {
+        "type": "object",
+        "properties": {
+          "lat": { "type": "number", "format": "float" },
+          "lon": { "type": "number", "format": "float" },
+          "days": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "date": { "type": "string", "format": "date" },
+                "weather_summary": { "type": "string" },
+                "tempSeverity": { "type": "string" },
+                "rainSeverity": { "type": "string" },
+                "windSeverity": { "type": "string" },
+                "humiditySeverity": { "type": "string" },
+                "sunSeverity": { "type": "string" },
+                "risk": { "type": "number", "format": "float" },
+                "risk_level": {
+                  "type": "string",
+                  "enum": ["Low", "Moderate", "High", "Very High", "Unknown"]
+                },
+                "message": { "type": "string" }
+              }
+            }
+          }
+        }
+      },
+      "DisruptionAnalyticsResponse": {
+        "type": "object",
+        "properties": {
+          "location": { "type": "string" },
+          "overall": {
+            "type": "object",
+            "properties": {
+              "total_days": { "type": "integer" },
+              "total_disruption_days": { "type": "integer" },
+              "overall_disruption_rate": { "type": "number", "format": "float" },
+              "data_from": { "type": "string", "format": "date" },
+              "data_to": { "type": "string", "format": "date" }
+            }
+          },
+          "best_worst_day_of_week": {
+            "type": "object",
+            "properties": {
+              "all_time": {
+                "type": "object",
+                "properties": {
+                  "by_day": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "label": { "type": "string" },
+                        "disruption_rate": { "type": "number", "format": "float" },
+                        "sample_size": { "type": "integer" },
+                        "disruption_days": { "type": "integer" },
+                        "non_disruption_days": { "type": "integer" }
+                      }
+                    }
+                  },
+                  "best": { "type": "string" },
+                  "worst": { "type": "string" }
+                }
+              }
+            }
+          },
+          "best_worst_month": {
+            "type": "object",
+            "properties": {
+              "all_time": {
+                "type": "object",
+                "properties": {
+                  "by_month": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "label": { "type": "string" },
+                        "disruption_rate": { "type": "number", "format": "float" },
+                        "sample_size": { "type": "integer" },
+                        "disruption_days": { "type": "integer" },
+                        "non_disruption_days": { "type": "integer" }
+                      }
+                    }
+                  },
+                  "best": { "type": "string" },
+                  "worst": { "type": "string" }
+                }
+              }
+            }
+          },
+          "weather_threshold_analysis": {
+            "type": "object",
+            "properties": {
+              "temperature": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "threshold_c": { "type": "number" },
+                    "disruption_rate": { "type": "number", "format": "float" },
+                    "sample_size": { "type": "integer" },
+                    "disruption_days": { "type": "integer" }
+                  }
+                }
+              },
+              "wind": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "threshold_kmh": { "type": "number" },
+                    "disruption_rate": { "type": "number", "format": "float" },
+                    "sample_size": { "type": "integer" },
+                    "disruption_days": { "type": "integer" }
+                  }
+                }
+              },
+              "rainfall": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "threshold_mm": { "type": "number" },
+                    "disruption_rate": { "type": "number", "format": "float" },
+                    "sample_size": { "type": "integer" },
+                    "disruption_days": { "type": "integer" }
+                  }
+                }
               }
             }
           }
